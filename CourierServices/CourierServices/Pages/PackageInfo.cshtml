@@ -1,0 +1,46 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Package Info";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Information about package.</p>
+
+<form method="post">
+    <label for="numPackage">Enter number of package:</label><br>
+    <input type="text" id="numPackage" name="numPackage"><br><br>
+    <input type="submit" value="Show">
+</form>
+
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Shipment number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.history != null && Model.history.Count > 0)
+        {
+            int i = 1;
+            @foreach (var row in Model.history)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@row.Date</td>
+                    <td>@row.Status</td>
+                    <td>@row.ShipmentId</td>
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+        <p>There is no package with that number.</p>
+        }
+    </tbody>
+</table>
